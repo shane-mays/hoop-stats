@@ -5,6 +5,7 @@ import {
   LeaderboardSeason,
   PlayerSeasonStats,
   RecentGame,
+  TeamCombinationSummary,
   TeammateSummary,
   User,
 } from 'interfaces';
@@ -231,4 +232,18 @@ export const getUserSeasonStats = async (
     throw error;
   }
   return data || [];
+};
+
+export const getUserTeamCombinations = async (
+  userId: string,
+): Promise<TeamCombinationSummary[]> => {
+  const { data, error } = await supabase.rpc('get_user_team_combinations', {
+    p_user_id: userId,
+  });
+
+  if (error) {
+    throw error;
+  }
+
+  return data as TeamCombinationSummary[];
 };

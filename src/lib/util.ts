@@ -80,3 +80,9 @@ export const timeDuration = (
   const formatted = `${minutes}m ${seconds}s`;
   return formatted;
 };
+
+export const formatAverage = (value: number) => {
+  const rounded = Math.round(value * 10) / 10;
+
+  return Number.isInteger(rounded) ? rounded.toString() : rounded.toFixed(1);
+};

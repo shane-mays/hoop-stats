@@ -212,6 +212,43 @@ Used by:
 
 - the player profile season stats section
 
+### `get_user_team_combinations`
+
+Expected arguments:
+
+- `p_user_id`
+
+Expected return shape:
+
+- an array of lineup combination objects
+
+Each lineup combination object is expected to include:
+
+- `combinationKey`
+- `players`
+- `gamesPlayed`
+- `wins`
+- `losses`
+- `winPct`
+- `pointsForAvg`
+- `pointsAgainstAvg`
+- `pointDiffAvg`
+- `lastPlayedAt`
+
+Each `players` entry is expected to include:
+
+- `id`
+- `name`
+- `username`
+
+Used by:
+
+- the team history screen
+
+Current frontend note:
+
+- `winPct` is currently treated as a percentage value already scaled to `0-100`, not a `0-1` ratio.
+
 Current frontend note:
 
 - The leaderboard UI currently surfaces `points`, `assists`, `steals`, `blocks`, and `threes`.

@@ -10,13 +10,15 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AppLayout from './App';
 
 const LeaderboardScreen = lazy(() => import('screens/LeaderboardScreen'));
-const TeamHistoryScreen = lazy(() => import('screens/TeamHistoryScreen'));
 const UserSelectScreen = lazy(() => import('screens/UserSelectScreen'));
 const CreateGameScreen = lazy(
   () => import('features/create-game/CreateGameScreen'),
 );
 const PlayerProfileScreen = lazy(
   () => import('features/player-profile/PlayerProfileScreen'),
+);
+const TeamHistoryScreen = lazy(
+  () => import('features/team-history/TeamHistoryScreen'),
 );
 const GameSummaryScreen = lazy(
   () => import('features/game-summary/GameSummaryScreen'),
@@ -36,7 +38,7 @@ const router = createBrowserRouter([
       { path: 'player/:id?', element: <PlayerProfileScreen /> },
       { path: 'game/:gameId/', element: <GameSummaryScreen /> },
       { path: 'leaderboard', element: <LeaderboardScreen /> },
-      { path: 'team', element: <TeamHistoryScreen /> },
+      { path: 'teams/:id?', element: <TeamHistoryScreen /> },
     ],
   },
 ]);

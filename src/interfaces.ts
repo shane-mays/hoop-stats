@@ -168,3 +168,22 @@ export type CalculatedGameMvpResult = {
   mvpUserIds: string[];
   message: string;
 };
+
+export type TeamCombinationPlayer = {
+  id: string;
+  name: string;
+  username: string;
+};
+
+export type TeamCombinationSummary = {
+  combinationKey: string;
+  players: TeamCombinationPlayer[];
+  gamesPlayed: number;
+  wins: number;
+  losses: number;
+  winPct: number;
+  pointsForAvg: number;
+  pointsAgainstAvg: number;
+  pointDiffAvg: number;
+  lastPlayedAt: string | null;
+};

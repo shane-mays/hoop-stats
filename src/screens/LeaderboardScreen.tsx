@@ -137,8 +137,8 @@ export default function LeaderboardScreen() {
   };
 
   return (
-    <Stack p={4} pb="5rem" gap={4}>
-      <Stack gap={1}>
+    <Stack p={4} pb="3.5rem" gap={4}>
+      <Stack gap={0}>
         <HStack justify="space-between" align="end">
           <Heading size="lg">Season Leaderboards</Heading>
         </HStack>

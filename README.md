@@ -16,6 +16,7 @@ The current experience is optimized for mobile and tablet portrait workflows, wi
 - Generate real-time box scores and game summaries  
 - View player history and performance trends  
 - Leaderboard system with sortable averages and totals  
+- Team-combination view that compares which lineups perform best for a player
 - Designed for efficient long-term stat aggregation using SQL views  
 
 ## Technical Highlights
@@ -51,6 +52,7 @@ The current experience is optimized for mobile and tablet portrait workflows, wi
 - `/player/:id?` player history and profile view
 - `/game/:gameId/` game summary and stat editing
 - `/leaderboard` season stat leaderboards with sortable averages and totals
+- `/team` lineup-combination history for the current or routed player
 
 ## Backend
 
@@ -115,6 +117,9 @@ This frontend assumes a pre-existing Supabase project with:
 - a `complete_game` RPC
 - a `get_current_leaderboard` RPC
 - a `refresh_current_leaderboard` RPC for the admin-only More drawer action
+- a `get_top_teammates` RPC
+- a `get_player_current_season_stats` RPC
+- a `get_user_team_combinations` RPC
 
 The current frontend-side contract is documented in `docs/SUPABASE.md`.
 
@@ -138,6 +143,5 @@ The current frontend-side contract is documented in `docs/SUPABASE.md`.
 
 ## Current Gaps
 
-- `Team` is still a placeholder. Need to add functionality.
 - There are no component or integration tests yet.
 - Supabase schema and SQL migrations are not checked into this repository.

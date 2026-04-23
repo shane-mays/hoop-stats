@@ -18,7 +18,6 @@ import { useState } from 'react';
 import { IoIosMore, IoMdAddCircleOutline } from 'react-icons/io';
 import { IoQrCodeOutline } from 'react-icons/io5';
 import { MdLeaderboard } from 'react-icons/md';
-import { RiTeamFill } from 'react-icons/ri';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 type MoreActionsDrawerProps = {
@@ -108,15 +107,6 @@ export default function MoreActionsDrawer(props: MoreActionsDrawerProps) {
                     >
                       <IoQrCodeOutline />
                       Share QR Code
-                    </Button>
-                    <Button
-                      variant={'plain'}
-                      color="whiteAlpha.800"
-                      justifyContent="flex-start"
-                      onClick={() => handleNavigate(store, '/team')}
-                    >
-                      <RiTeamFill />
-                      Teams
                     </Button>
                     {isStatsAdmin(selectedUser) && (
                       <>

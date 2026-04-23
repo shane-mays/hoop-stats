@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
+  formatAverage,
   formatDateAndTimeString,
   formatTimeAgo,
   omitId,
@@ -110,5 +111,22 @@ describe('timeDuration', () => {
       
     ])('returns $expected for createdTimestamp is $createdTimestamp and completedTimestamp is $completedTimestamp calling timeDuration', ({ createdTimestamp, completedTimestamp, expected }) => {
       expect(timeDuration(createdTimestamp, completedTimestamp)).toBe(expected);
+    });
+});
+
+
+describe('formatAverage', () => {
+  it.each([
+      { value: 0, expected: '0' },
+      { value: -1, expected: '-1' },
+      { value: 1, expected: '1' },
+      { value: 55.0, expected: '55' },
+      { value: 0.55, expected: '0.6' },
+      { value: 55.55, expected: '55.6' },
+      { value: 0.54, expected: '0.5' },
+      { value: 55.54, expected: '55.5' },
+      { value: 55.01, expected: '55' },
+    ])('returns $expected for $value calling formatAverage', ({ value, expected }) => {
+      expect(formatAverage(value)).toBe(expected);
     });
 });
