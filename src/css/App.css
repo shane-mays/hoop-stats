@@ -159,3 +159,64 @@ html, body, #root {
 .mode {
   line-height: 1.25;
 }
+
+.tabs-header {
+  --tw-shadow: 0 2px 2px 0 rgba(0, 0, 0, .25);
+  --tw-shadow-colored: 0 2px 2px 0 rgba(0, 0, 0, .25);
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  --tw-bg-opacity: 1;
+  background-color: rgb(43 45 64);
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  flex-direction: column;
+  display: flex;
+  margin-top: auto;
+  position: relative;
+}
+
+.tabs-container {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  width: 100%;
+  display: grid;
+}
+
+.tabs {
+  align-items: stretch;
+  display: flex;
+  margin: 0;
+  overflow-x: auto;
+  padding: 0;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -ms-overflow-style: "none";
+  scrollbar-width: "none";
+}
+
+.tab.active {
+  border-bottom-width: 2px;
+  pointer-events: none;
+  border-bottom-color: #67e8f9;
+  color:white;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 0;
+}
+
+.tab {
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration-line: none;
+  transition-duration: .15s;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-timing-function: cubic-bezier(.4, 0, 1, 1);
+  flex: 1 1 0%;
+  align-items: center;
+  display: inline-flex;
+  gap: .5rem;
+  justify-content: center;
+  padding: 1rem;
+  color:white;
+}

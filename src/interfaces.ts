@@ -134,6 +134,17 @@ export type LeaderboardSeason = {
   players: LeaderboardPlayer[];
 };
 
+export type TeamLeaderboardSeason = {
+  seasonLabel: string;
+  lastUpdated: string;
+  combinations: TeamCombinationSummary[];
+};
+
+export type CurrentLeaderboards = {
+  playerLeaderboard: LeaderboardSeason;
+  teamLeaderboard: TeamLeaderboardSeason;
+};
+
 export type LeaderboardStatKey =
   | 'points'
   | 'assists'

@@ -9,10 +9,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import AppLayout from './App';
 
-const LeaderboardScreen = lazy(() => import('screens/LeaderboardScreen'));
 const UserSelectScreen = lazy(() => import('screens/UserSelectScreen'));
 const CreateGameScreen = lazy(
   () => import('features/create-game/CreateGameScreen'),
+);
+const LeaderboardScreen = lazy(
+  () => import('features/leaderboard/LeaderboardScreen'),
 );
 const PlayerProfileScreen = lazy(
   () => import('features/player-profile/PlayerProfileScreen'),

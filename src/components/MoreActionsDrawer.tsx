@@ -13,7 +13,7 @@ import { showToast } from 'components/ui/toaster';
 import { useUser } from 'context/UserContext';
 import { getErrorMessage } from 'lib/errors';
 import { isStatsAdmin } from 'lib/permissions';
-import { refreshCurrentLeaderboard } from 'lib/supabaseApi';
+import { refreshAllCurrentLeaderboard } from 'lib/supabaseApi';
 import { useState } from 'react';
 import { IoIosMore, IoMdAddCircleOutline } from 'react-icons/io';
 import { IoQrCodeOutline } from 'react-icons/io5';
@@ -45,7 +45,7 @@ export default function MoreActionsDrawer(props: MoreActionsDrawerProps) {
   const handleRefreshLeaderboard = async (store: UseDialogContext) => {
     setIsSubmittingLeaderboardRefresh(true);
     try {
-      await refreshCurrentLeaderboard();
+      await refreshAllCurrentLeaderboard();
       showToast('Leaderboard updated', 'success');
       store.setOpen(false);
     } catch (error) {

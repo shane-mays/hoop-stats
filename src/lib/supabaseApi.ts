@@ -1,8 +1,8 @@
 import {
   CalculatedGameMvpResult,
   CreateUpdateUser,
+  CurrentLeaderboards,
   GameBoxScoreType,
-  LeaderboardSeason,
   PlayerSeasonStats,
   RecentGame,
   TeamCombinationSummary,
@@ -185,18 +185,19 @@ export const calculateGameMvp = async (
   return data as CalculatedGameMvpResult;
 };
 
-export const getCurrentLeaderboard = async (): Promise<LeaderboardSeason> => {
-  const { data, error } = await supabase.rpc('get_current_leaderboard');
+export const getCurrentLeaderboards =
+  async (): Promise<CurrentLeaderboards> => {
+    const { data, error } = await supabase.rpc('get_current_leaderboards');
 
-  if (error) {
-    throw error;
-  }
+    if (error) {
+      throw error;
+    }
 
-  return data as LeaderboardSeason;
-};
+    return data as CurrentLeaderboards;
+  };
 
-export const refreshCurrentLeaderboard = async () => {
-  const { error } = await supabase.rpc('refresh_current_leaderboard');
+export const refreshAllCurrentLeaderboard = async () => {
+  const { error } = await supabase.rpc('refresh_all_current_leaderboards');
 
   if (error) {
     throw error;
