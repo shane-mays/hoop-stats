@@ -94,7 +94,7 @@ export default function CreateGameScreen() {
   };
 
   return (
-    <Stack padding={4} paddingBottom={'4rem'}>
+    <Stack className="screen-container">
       {isLoadingUsers ? (
         <LoadState title="Loading players" loading />
       ) : loadError ? (
@@ -106,37 +106,46 @@ export default function CreateGameScreen() {
         />
       ) : (
         <>
-          <Heading size="lg">Create Game</Heading>
-          <Stack gap={4}>
-            <Field.Root>
-              <Field.Label>Total Points to Win</Field.Label>
-              <NumberInput.Root
-                spinOnPress={false}
-                value={form.values.targetScore}
-                onValueChange={(e) => {
-                  form.setValue('targetScore', e.value);
-                }}
-              >
-                <HStack gap="2">
-                  <NumberInput.DecrementTrigger asChild>
-                    <IconButton variant="surface" size="sm">
-                      <LuMinus />
-                    </IconButton>
-                  </NumberInput.DecrementTrigger>
-                  <NumberInput.ValueText
-                    textAlign="center"
-                    fontSize="lg"
-                    minW="3ch"
-                  />
-                  <NumberInput.IncrementTrigger asChild>
-                    <IconButton variant="surface" size="sm">
-                      <LuPlus />
-                    </IconButton>
-                  </NumberInput.IncrementTrigger>
-                </HStack>
-              </NumberInput.Root>
-              <Field.ErrorText>The entry is invalid</Field.ErrorText>
-            </Field.Root>
+          <Heading px={2} size="lg">
+            Create Game
+          </Heading>
+          <Stack gap={4} px={2}>
+            <HStack>
+              <Field.Root>
+                <Field.Label>Total Points to Win</Field.Label>
+                <NumberInput.Root
+                  spinOnPress={false}
+                  value={form.values.targetScore}
+                  onValueChange={(e) => {
+                    form.setValue('targetScore', e.value);
+                  }}
+                >
+                  <HStack gap="2">
+                    <NumberInput.DecrementTrigger asChild>
+                      <IconButton variant="surface" size="sm">
+                        <LuMinus />
+                      </IconButton>
+                    </NumberInput.DecrementTrigger>
+                    <NumberInput.ValueText
+                      textAlign="center"
+                      fontSize="lg"
+                      minW="3ch"
+                    />
+                    <NumberInput.IncrementTrigger asChild>
+                      <IconButton variant="surface" size="sm">
+                        <LuPlus />
+                      </IconButton>
+                    </NumberInput.IncrementTrigger>
+                  </HStack>
+                </NumberInput.Root>
+              </Field.Root>
+              <FormField
+                label="Location"
+                field="location"
+                form={form}
+                placeholder="Enter where your playing"
+              ></FormField>
+            </HStack>
             <RadioCard.Root
               value={form.values.courtSize}
               onValueChange={(e) => {
@@ -185,12 +194,6 @@ export default function CreateGameScreen() {
                 </RadioCard.Item>
               </HStack>
             </RadioCard.Root>
-            <FormField
-              label="Location"
-              field="location"
-              form={form}
-              placeholder="Enter where your playing"
-            ></FormField>
           </Stack>
           <div>
             <HStack

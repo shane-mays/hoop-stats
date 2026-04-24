@@ -42,7 +42,7 @@ export default function RecentGamesSection(props: RecentGamesSectionProps) {
 
   return (
     <Stack gap={1}>
-      <Heading size="md" alignSelf="start" px={4}>
+      <Heading size="md" alignSelf="start" px={2}>
         Games
       </Heading>
 

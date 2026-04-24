@@ -53,9 +53,8 @@ export default function PlayerProfileScreen() {
         setOpen(e.open);
       }}
     >
-      <Stack paddingTop={4} paddingBottom={'3.5rem'} h={'100dvh'}>
+      <Stack className="screen-container">
         <PlayerProfileHeader pageUser={pageUser} onRefresh={refresh} />
-
         <ScrollArea.Root flex={1}>
           <ScrollArea.Viewport>
             <ScrollArea.Content>
@@ -70,7 +69,7 @@ export default function PlayerProfileScreen() {
                   minH="200px"
                 />
               ) : (
-                <Stack gap={4} paddingBottom={1}>
+                <Stack gap={4}>
                   <PlayerSeasonStatSection
                     seasonStats={seasonStats}
                     isLoading={isLoadingSeasonStats}

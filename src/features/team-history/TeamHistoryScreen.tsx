@@ -47,8 +47,8 @@ export default function TeamHistoryScreen() {
   }
 
   return (
-    <Stack paddingTop={4} pb="3.5rem" gap={2} h="100dvh">
-      <Stack px={4} gap={0}>
+    <Stack className="screen-container">
+      <Stack px={2} gap={0}>
         <Heading size="lg">Teams</Heading>
         <Text className="summary-label">
           Best-performing lineups for {pageUser.name}
@@ -58,7 +58,7 @@ export default function TeamHistoryScreen() {
       <ScrollArea.Root flex={1}>
         <ScrollArea.Viewport>
           <ScrollArea.Content>
-            <Stack gap={4} pb={1}>
+            <Stack gap={4}>
               <TeamHistorySummarySection
                 combinations={combinations}
                 isLoading={isLoading}

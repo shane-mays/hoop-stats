@@ -40,6 +40,7 @@ The current experience is optimized for mobile and tablet portrait workflows, wi
 
 - `src/main.tsx` bootstraps the app and initializes routing and providers
 - `src/App.tsx` provides shared layout, navigation, and global UI components
+- `src/components/AppErrorBoundary.tsx` handles route-level runtime failures
 - `src/features/*` contains feature-specific logic, components, and workflows
 - `src/components/*` contains reusable UI components
 - `src/context/UserContext.tsx` stores the selected user and persists it in `localStorage`
@@ -51,8 +52,8 @@ The current experience is optimized for mobile and tablet portrait workflows, wi
 - `/create-game` create a new game and assign teams
 - `/player/:id?` player history and profile view
 - `/game/:gameId/` game summary and stat editing
-- `/leaderboard` season stat leaderboards with sortable averages and totals
-- `/team` lineup-combination history for the current or routed player
+- `/leaderboard` season player and team leaderboards
+- `/teams/:id?` lineup-combination history for the current or routed player
 
 ## Backend
 
@@ -115,8 +116,8 @@ This frontend assumes a pre-existing Supabase project with:
 - a `game_box_score` view or table-like query source
 - a `create_game_with_teams` RPC
 - a `complete_game` RPC
-- a `get_current_leaderboard` RPC
-- a `refresh_current_leaderboard` RPC for the admin-only More drawer action
+- a `get_current_leaderboards` RPC
+- a `refresh_all_current_leaderboards` RPC for the admin-only More drawer action
 - a `get_top_teammates` RPC
 - a `get_player_current_season_stats` RPC
 - a `get_user_team_combinations` RPC
@@ -136,9 +137,11 @@ The current frontend-side contract is documented in `docs/SUPABASE.md`.
 
 ## Leaderboard Notes
 
-- The leaderboard screen now uses live data from Supabase through `get_current_leaderboard`.
-- The current leaderboard UI surfaces `points`, `assists`, `steals`, `blocks`, and `threes`.
-- Each stat view supports sorting by season average and season total.
+- The leaderboard screen now uses live data from Supabase through `get_current_leaderboards`.
+- The leaderboard has two views: `Players` and `Teams`.
+- The player leaderboard UI surfaces `points`, `assists`, `steals`, `blocks`, and `threes`.
+- Each player stat view supports sorting by season average and season total.
+- The team leaderboard supports filtering by minimum games played and sorting by win percentage, point differential, and games played.
 - Rebounds remain in the shared type/backend contract for future use, but are not currently shown in the UI.
 
 ## Current Gaps

@@ -165,7 +165,7 @@ export default function GameSummaryScreen(props: GameSummaryProps) {
   }
 
   return (
-    <Box px={1} py={4} gap={4}>
+    <Box className="screen-container">
       <GameSummaryHeader
         onReload={fetchGame}
         onRunItBack={markSessionUpdated}

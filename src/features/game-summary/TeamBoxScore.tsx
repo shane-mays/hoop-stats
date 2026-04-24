@@ -17,14 +17,13 @@ export default function TeamBoxScore({
   scoringType,
 }: TeamBoxScoreProps) {
   return (
-    <Box borderWidth="1px" borderRadius="lg">
-      <Heading size="md" p={2}>
+    <Box borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Heading size="md" px={4} py={2}>
         {team.teamName} ({team.score})
       </Heading>
-      <Table.ScrollArea borderWidth="1px">
+      <Table.ScrollArea>
         <Table.Root
           striped
-          showColumnBorder
           stickyHeader
           css={{
             '& [data-sticky]': {
@@ -38,18 +37,9 @@ export default function TeamBoxScore({
                 pointerEvents: 'none',
                 top: '0',
                 bottom: '-1px',
-                width: '32px',
+                width: '24px',
               },
             },
-
-            '& [data-sticky=end]': {
-              _after: {
-                insetInlineEnd: '0',
-                translate: '100% 0',
-                shadow: 'inset 8px 0px 8px -8px rgba(0, 0, 0, 0.16)',
-              },
-            },
-
             '& [data-sticky=start]': {
               _after: {
                 insetInlineStart: '0',
@@ -69,7 +59,7 @@ export default function TeamBoxScore({
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeader
-                data-sticky="end"
+                data-sticky="start"
                 minW={100}
                 left="0"
                 pt={1}

@@ -11,7 +11,7 @@ export default function PlayerProfileHeader(props: PlayerProfileHeaderProps) {
   const { pageUser, onRefresh } = props;
 
   return (
-    <HStack px={4} justify="space-between">
+    <HStack px={2} justify="space-between">
       <HStack>
         <Avatar.Root>
           <Avatar.Fallback />

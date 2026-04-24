@@ -22,7 +22,7 @@ export const PlayerStatRow = ({
 
   return (
     <Table.Row>
-      <Table.Cell data-sticky="end" left="0" p={0}>
+      <Table.Cell data-sticky="start" left="0" p={0}>
         <HStack justifyContent={'space-between'} px={2}>
           <HStack gap={0} align={'center'}>
             {player.isCaptain && (

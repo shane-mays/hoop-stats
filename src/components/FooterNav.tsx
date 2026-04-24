@@ -1,5 +1,3 @@
-import 'css/nav.css';
-
 import { Icon, Text } from '@chakra-ui/react';
 import { FaBasketball } from 'react-icons/fa6';
 import { IoMdHome } from 'react-icons/io';

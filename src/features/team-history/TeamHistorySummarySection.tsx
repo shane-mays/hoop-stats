@@ -1,12 +1,4 @@
-import {
-  Box,
-  Grid,
-  Heading,
-  HStack,
-  Stack,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
+import { Box, Grid, HStack, Stack, Text, VStack } from '@chakra-ui/react';
 import LoadState from 'components/LoadState';
 import { TeamCombinationSummary } from 'interfaces';
 import { formatAverage } from 'lib/util';
@@ -52,12 +44,10 @@ export default function TeamHistorySummarySection(
   const mostPlayed = [...combinations].sort(
     (a, b) => b.gamesPlayed - a.gamesPlayed || b.winPct - a.winPct,
   )[0];
-  const bestWinPct = combinations[0];
   const totalGames = combinations.reduce(
     (sum, combination) => sum + combination.gamesPlayed,
     0,
   );
-  const bestWinPctLineup = bestWinPct!;
   const mostPlayedLineup = mostPlayed!;
 
   const lineupLabel = (combination: TeamCombinationSummary) => {
@@ -66,82 +56,39 @@ export default function TeamHistorySummarySection(
 
   return (
     <Stack gap={1}>
-      <Heading px={4} size="md" alignSelf="start">
-        Summary
-      </Heading>
-
       <Grid
         templateColumns={{
           base: 'repeat(2, minmax(0, 1fr))',
           md: 'repeat(3, minmax(0, 1fr))',
         }}
         gap={1}
-        px={1}
       >
-        <Box bg="bg.panel" borderWidth="1px" borderRadius=".5rem" px={2} py={1}>
-          <VStack gap={0} align="baseline">
-            <Text fontSize="sm" fontWeight="medium" color="#D0CFE5">
-              Team Combos
-            </Text>
-            <Text fontSize="md" fontWeight="bold" lineHeight="1">
-              {combinations.length}
-            </Text>
-          </VStack>
+        <Box className={'overview-container'}>
+          <HStack justify={'space-between'}>
+            <Text className="label">Total Lineups</Text>
+            <Text className="stat">{combinations.length}</Text>
+          </HStack>
         </Box>
-        <Box bg="bg.panel" borderWidth="1px" borderRadius=".5rem" px={2} py={1}>
-          <VStack gap={0} align="baseline">
-            <Text fontSize="sm" fontWeight="medium" color="#D0CFE5">
-              Combo Games
-            </Text>
-            <Text fontSize="md" fontWeight="bold" lineHeight="1">
-              {totalGames}
-            </Text>
-          </VStack>
-        </Box>
-        <Box
-          bg="bg.panel"
-          borderWidth="1px"
-          borderRadius=".5rem"
-          px={2}
-          py={1}
-          gridColumn={{ base: 'span 2', md: 'span 1' }}
-        >
-          <HStack justify="space-between" align="start">
-            <VStack gap={0} align="baseline" minW={0}>
-              <Text fontSize="sm" fontWeight="medium" color="#D0CFE5">
-                Best Lineup
-              </Text>
-              <Text fontSize="xs" color="fg.muted" lineClamp={2}>
-                {lineupLabel(bestWinPctLineup)}
-              </Text>
-            </VStack>
-            <Text fontSize="md" fontWeight="bold" lineHeight="1" flexShrink={0}>
-              {bestWinPctLineup.winPct.toFixed(1)}%
-            </Text>
+        <Box className={'overview-container'}>
+          <HStack justify={'space-between'}>
+            <Text className="label">Total Games</Text>
+            <Text className="stat">{totalGames}</Text>
           </HStack>
         </Box>
         <Box
-          bg="bg.panel"
-          borderWidth="1px"
-          borderRadius=".5rem"
-          px={2}
-          py={1}
+          className={'overview-container'}
           gridColumn={{ base: 'span 2', md: 'span 3' }}
         >
           <HStack justify="space-between" align="start">
             <VStack gap={0} align="baseline" minW={0}>
-              <Text fontSize="sm" fontWeight="medium" color="#D0CFE5">
-                Most Played Lineup
-              </Text>
-              <Text fontSize="xs" color="fg.muted" lineClamp={2}>
+              <Text className="label">Most Played Lineup</Text>
+              <Text className="substat" lineClamp={2}>
                 {lineupLabel(mostPlayedLineup)}
               </Text>
             </VStack>
-            <Text fontSize="md" fontWeight="bold" lineHeight="1" flexShrink={0}>
-              {mostPlayedLineup.gamesPlayed} GP
-            </Text>
+            <Text className="stat">{mostPlayedLineup.gamesPlayed} GP</Text>
           </HStack>
-          <Text fontSize="xs" color="fg.muted" mt={1}>
+          <Text className="substat">
             {formatAverage(mostPlayedLineup.pointsForAvg)} scored /{' '}
             {formatAverage(mostPlayedLineup.pointsAgainstAvg)} allowed
           </Text>

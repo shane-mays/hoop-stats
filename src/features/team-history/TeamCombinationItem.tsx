@@ -14,27 +14,37 @@ export default function TeamCombinationItem(props: TeamCombinationItemProps) {
     combination.winPct >= 50 ? 'match-row win-row' : 'match-row loss-row';
 
   return (
-    <Stack gap={2} marginX={1} className={rowClass}>
+    <Stack gap={2} className={rowClass}>
       <HStack justifyContent="space-between" width="100%" gap={0}>
         <Stack gap={0} alignItems="start" minW={0}>
           <HStack flexWrap="wrap" gap={2}>
-            <Text color="whiteAlpha.500" fontWeight="bold" lineHeight={1.1}>
+            <Text
+              fontSize={'.75rem'}
+              color="whiteAlpha.600"
+              fontWeight={500}
+              lineHeight={1.15}
+            >
               {rank}
             </Text>
-            <Text fontWeight="bold" lineHeight={1.1}>
-              {combination.players.map((player) => player.name).join(' / ')}
+            <Text className="time-started">
+              {combination.lastPlayedAt
+                ? `Last played ${formatTimeAgo(combination.lastPlayedAt)}`
+                : 'No completed games yet'}
             </Text>
           </HStack>
-          <Text className="time-started">
-            {combination.lastPlayedAt
-              ? `Last played ${formatTimeAgo(combination.lastPlayedAt)}`
-              : 'No completed games yet'}
+          <Text
+            fontSize={'1rem'}
+            color="white"
+            fontWeight={700}
+            lineHeight={1.125}
+          >
+            {combination.players.map((player) => player.name).join(' / ')}
           </Text>
         </Stack>
 
         <Stack gap={0} align="end" flexShrink={0}>
           <Text className="mode">{combination.gamesPlayed} GP</Text>
-          <Text fontWeight="bold" fontSize="1rem" lineHeight={1.25}>
+          <Text fontWeight="bold" fontSize="1rem" lineHeight={1}>
             {combination.winPct.toFixed(1)}%
           </Text>
         </Stack>

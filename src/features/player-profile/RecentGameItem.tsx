@@ -18,7 +18,6 @@ export default function RecentGameItem({
   return (
     <Stack
       gap={2}
-      marginX={1}
       className={'match-row' + winClass}
       onClick={() => openDrawer(gameSummary.gamePublicId)}
     >

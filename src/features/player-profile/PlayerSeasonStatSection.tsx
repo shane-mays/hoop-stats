@@ -55,26 +55,15 @@ export default function PlayerSeasonStatSection(
 
   const StatCard = ({ label, total, average }: StatCardProps) => {
     return (
-      <Box bg="bg.panel" borderWidth="1px" borderRadius=".5rem" px={2} py={1}>
+      <Box className={'overview-container'}>
         <HStack justify={'space-between'}>
           <VStack gap={0} align={'baseline'}>
-            <Text
-              fontSize="sm"
-              fontWeight="medium"
-              lineHeight="short"
-              color={'#D0CFE5'}
-            >
-              {label}
-            </Text>
+            <Text className="label">{label}</Text>
             {average !== undefined ? (
-              <Text fontSize="xs" color="fg.muted">
-                {'Avg ' + formatAverage(average)}
-              </Text>
+              <Text className="substat">{'Avg ' + formatAverage(average)}</Text>
             ) : null}
           </VStack>
-          <Text fontSize="md" fontWeight="bold" lineHeight="1">
-            {formatNumber(total)}
-          </Text>
+          <Text className="stat">{formatNumber(total)}</Text>
         </HStack>
       </Box>
     );
@@ -108,34 +97,24 @@ export default function PlayerSeasonStatSection(
 
   return (
     <Stack gap={1}>
-      <Heading px={4} size="md" alignSelf="start">
+      <Heading px={2} size="md" alignSelf="start">
         Season Stats
       </Heading>
 
       <Grid
         templateColumns={{
-          base: 'repeat(3, minmax(0, 1fr))',
-          md: 'repeat(3, minmax(0, 1fr))',
+          base: 'repeat(2, minmax(0, 1fr))',
+          md: 'repeat(2, minmax(0, 1fr))',
         }}
         gap={1}
-        px={1}
       >
-        <Box bg="bg.panel" borderWidth="1px" borderRadius=".5rem" px={2} py={1}>
+        <Box className="overview-container">
           <HStack justify={'space-between'}>
             <VStack gap={0} align={'baseline'}>
-              <Text
-                fontSize="sm"
-                fontWeight="medium"
-                lineHeight="short"
-                color={'#D0CFE5'}
-              >
-                Record
-              </Text>
-              <Text fontSize="xs" color="fg.muted">
-                {seasonStats.stats.wins.average}%
-              </Text>
+              <Text className="label">Record</Text>
+              <Text className="substat">{seasonStats.stats.wins.average}%</Text>
             </VStack>
-            <Text fontSize="md" fontWeight="bold" lineHeight="1">
+            <Text className="stat">
               {seasonStats.stats.wins.total} - {seasonStats.stats.losses}
             </Text>
           </HStack>

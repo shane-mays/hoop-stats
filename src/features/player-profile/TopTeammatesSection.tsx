@@ -40,44 +40,28 @@ export default function TopTeammatesSection(props: TopTeammatesSectionProps) {
 
   return (
     <Stack gap={1}>
-      <Heading px={4} size="md" alignSelf="start">
+      <Heading px={2} size="md" alignSelf="start">
         Top Teammates
       </Heading>
 
-      <HStack px={1} gap={1} flexWrap={'wrap'}>
+      <HStack gap={1} flexWrap={'wrap'}>
         {teammates.map((teammate, i) => (
           <HStack
             key={teammate.userId}
             justify="space-between"
-            px={2}
-            py={1}
-            bg="bg.panel"
-            borderRadius=".5rem"
-            borderWidth="1px"
-            borderColor="border.emphasized"
+            className={'overview-container'}
             flex={1}
+            minW={'40%'}
           >
             <HStack minW={0} gap={2}>
-              <Text color="whiteAlpha.500" fontWeight="bold" minW="16px">
+              <Text className="substat" minW="16px">
                 {i + 1}
               </Text>
 
-              <Text
-                fontWeight={'medium'}
-                fontSize="sm"
-                lineHeight={1.25}
-                color={'#D0CFE5'}
-              >
-                {teammate.name}
-              </Text>
+              <Text className="label">{teammate.name}</Text>
             </HStack>
 
-            <Text
-              fontSize="md"
-              fontWeight={'bold'}
-              lineHeight={'1'}
-              flexShrink={0}
-            >
+            <Text className="stat" flexShrink={0}>
               {(teammate.winPercentage * 100).toFixed(1)}%
             </Text>
           </HStack>

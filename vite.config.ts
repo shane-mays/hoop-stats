@@ -26,41 +26,54 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (!id.includes('node_modules')) {
-            return;
-          }
+          if (!id.includes('node_modules')) return;
+
+          const normalizedId = id.replaceAll('\\', '/');
 
           if (
-            id.includes('/node_modules/react/') ||
-            id.includes('/node_modules/react-dom/') ||
-            id.includes('/node_modules/scheduler/')
+            normalizedId.includes('/node_modules/react/') ||
+            normalizedId.includes('/node_modules/react-dom/') ||
+            normalizedId.includes('/node_modules/scheduler/')
           ) {
             return 'react-vendor';
           }
 
           if (
-            id.includes('/node_modules/react-router/') ||
-            id.includes('/node_modules/react-router-dom/') ||
-            id.includes('/node_modules/@remix-run/router/')
+            normalizedId.includes('/node_modules/react-router/') ||
+            normalizedId.includes('/node_modules/react-router-dom/') ||
+            normalizedId.includes('/node_modules/@remix-run/router/')
           ) {
             return 'router-vendor';
           }
 
-          if (
-            id.includes('/node_modules/@chakra-ui/') ||
-            id.includes('/node_modules/@emotion/') ||
-            id.includes('/node_modules/@ark-ui/') ||
-            id.includes('/node_modules/@zag-js/')
-          ) {
-            return 'ui-vendor';
+          if (normalizedId.includes('/node_modules/@supabase/')) {
+            return 'supabase-vendor';
           }
 
-          if (id.includes('/node_modules/react-icons/')) {
+          if (
+            normalizedId.includes('/node_modules/react-icons/') ||
+            normalizedId.includes('/node_modules/lucide-react/')
+          ) {
             return 'icons-vendor';
           }
 
-          if (id.includes('/node_modules/@supabase/')) {
-            return 'supabase-vendor';
+          if (normalizedId.includes('/node_modules/@chakra-ui/')) {
+            return 'chakra-vendor';
+          }
+
+          if (normalizedId.includes('/node_modules/@emotion/')) {
+            return 'emotion-vendor';
+          }
+
+          if (
+            normalizedId.includes('/node_modules/@ark-ui/') ||
+            normalizedId.includes('/node_modules/@zag-js/')
+          ) {
+            return 'ark-vendor';
+          }
+
+          if (normalizedId.includes('/node_modules/framer-motion/')) {
+            return 'motion-vendor';
           }
 
           return 'vendor';

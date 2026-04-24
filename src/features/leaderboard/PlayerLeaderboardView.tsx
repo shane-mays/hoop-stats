@@ -52,51 +52,42 @@ export default function PlayerLeaderboardView(
   return (
     <Stack gap={4}>
       <SimpleGrid columns={{ base: 2, md: 4 }} gap={1}>
-        <Box borderWidth="1px" borderRadius="lg" p={3}>
-          <Text className="summary-label">
+        <Box className={'overview-container'}>
+          <Text className="label">
             {currentStat.shortLabel}{' '}
             {currentStat.label === 'Wins' ? '% Leader' : 'Avg Leader'}
           </Text>
-          <Text fontWeight="bold" fontSize={14}>
-            {averageLeader?.name ?? '--'}
-          </Text>
-          <Text className="stats-val" fontSize={14}>
+          <Text className={'substat'}>{averageLeader?.name ?? '--'}</Text>
+          <Text className="stat">
             {averageLeader ? formatAverage(averageLeader.average) : '--'}
           </Text>
         </Box>
-        <Box borderWidth="1px" borderRadius="lg" p={3}>
-          <Text className="summary-label">
-            {currentStat.shortLabel} Total Leader
-          </Text>
-          <Text fontWeight="bold" fontSize={14}>
-            {totalLeader?.name ?? '--'}
-          </Text>
-          <Text className="stats-val" fontSize={14}>
+        <Box className={'overview-container'}>
+          <Text className="label">{currentStat.shortLabel} Total Leader</Text>
+          <Text className="substat">{totalLeader?.name ?? '--'}</Text>
+          <Text className="stat">
             {totalLeader ? formatAverage(totalLeader.total) : '--'}
           </Text>
         </Box>
       </SimpleGrid>
 
-      <Stack gap={2}>
-        <Text className="summary-label">Select Stat</Text>
-        <HStack gap={2} flexWrap="wrap">
-          {statOptions.map((option) => (
-            <Button
-              key={option.key}
-              size="sm"
-              minW="75px"
-              variant={selectedStat === option.key ? 'solid' : 'surface'}
-              colorPalette={option.color}
-              onClick={() => onSelectStat(option.key)}
-            >
-              {option.label}
-            </Button>
-          ))}
-        </HStack>
-      </Stack>
+      <HStack flexWrap="wrap">
+        {statOptions.map((option) => (
+          <Button
+            key={option.key}
+            size="xs"
+            minW="80px"
+            variant={selectedStat === option.key ? 'solid' : 'outline'}
+            colorPalette={option.color}
+            onClick={() => onSelectStat(option.key)}
+          >
+            {option.label}
+          </Button>
+        ))}
+      </HStack>
 
       <Box borderWidth="1px" borderRadius="lg" overflow="hidden">
-        <Box px={4} py={3} borderBottomWidth="1px">
+        <Box px={4} py={2} borderBottomWidth="1px">
           <Heading size="md">{currentStat.label} Leaderboard</Heading>
           <Text className="created-at">
             Tap any column header to sort by average or total.
@@ -134,7 +125,7 @@ export default function PlayerLeaderboardView(
           >
             <Table.Header>
               <Table.Row>
-                <Table.ColumnHeader textAlign="center" w="40px">
+                <Table.ColumnHeader textAlign="center" w="35px" px={0}>
                   RK
                 </Table.ColumnHeader>
                 <Table.ColumnHeader data-sticky="start" left="0" minW="100px">

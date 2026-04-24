@@ -1,11 +1,15 @@
 import 'css/App.css';
 
 import { ChakraProvider, defaultSystem, Theme } from '@chakra-ui/react';
+import { AppErrorBoundary } from 'components/AppErrorBoundary';
 import { UserProvider } from 'context/UserContext';
-import { StrictMode } from 'react';
-import { lazy } from 'react';
+import { lazy, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 
 import AppLayout from './App';
 
@@ -34,6 +38,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
+    errorElement: <AppErrorBoundary />,
     children: [
       { index: true, element: <UserSelectScreen /> },
       { path: 'create-game', element: <CreateGameScreen /> },
@@ -41,6 +46,7 @@ const router = createBrowserRouter([
       { path: 'game/:gameId/', element: <GameSummaryScreen /> },
       { path: 'leaderboard', element: <LeaderboardScreen /> },
       { path: 'teams/:id?', element: <TeamHistoryScreen /> },
+      { path: '*', element: <Navigate to="/" replace /> },
     ],
   },
 ]);
@@ -48,7 +54,7 @@ const router = createBrowserRouter([
 createRoot(container).render(
   <StrictMode>
     <ChakraProvider value={defaultSystem}>
-      <Theme appearance="dark" colorPalette={'cyan'}>
+      <Theme appearance="dark" colorPalette="cyan">
         <UserProvider>
           <RouterProvider router={router} />
         </UserProvider>

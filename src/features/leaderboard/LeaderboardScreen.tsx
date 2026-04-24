@@ -109,8 +109,8 @@ export default function LeaderboardScreen() {
   };
 
   return (
-    <Stack p={0} pb="3.5rem" gap={4} pt={4}>
-      <Stack px={4} gap={0}>
+    <Stack className="screen-container" px={0} gap={4}>
+      <Stack px={3} gap={0}>
         <HStack justify="space-between" align="end">
           <Heading size="lg">Season Leaderboards</Heading>
         </HStack>
@@ -140,7 +140,7 @@ export default function LeaderboardScreen() {
         </div>
       </div>
 
-      <Stack gap={4} paddingBottom={1} px={2}>
+      <Stack px={1}>
         {activeTab === 'players' ? (
           <PlayerLeaderboardView
             season={playerSeason}

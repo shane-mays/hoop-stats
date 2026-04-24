@@ -68,12 +68,12 @@ export default function TeamLeaderboardView(props: TeamLeaderboardViewProps) {
   return (
     <Stack gap={4}>
       <SimpleGrid columns={{ base: 2, md: 4 }} gap={1}>
-        <Box borderWidth="1px" borderRadius="lg" p={3}>
-          <Text className="summary-label">Best Point Diff</Text>
-          <Text fontWeight="bold" lineClamp={2} fontSize={14}>
+        <Box className={'overview-container'}>
+          <Text className="label">Best Point Diff</Text>
+          <Text className="substat">
             {teamDiffLeader ? getTeamLineupLabel(teamDiffLeader) : '--'}
           </Text>
-          <Text className="stats-val" fontSize={14}>
+          <Text className="stat">
             {teamDiffLeader
               ? `${teamDiffLeader.pointDiffAvg > 0 ? '+' : ''}${formatAverage(
                   teamDiffLeader.pointDiffAvg,
@@ -81,27 +81,30 @@ export default function TeamLeaderboardView(props: TeamLeaderboardViewProps) {
               : '--'}
           </Text>
         </Box>
-        <Box borderWidth="1px" borderRadius="lg" p={3}>
+        <Box className={'overview-container'}>
           <Text className="summary-label">Most Played</Text>
-          <Text fontWeight="bold" lineClamp={2} fontSize={14}>
+          <Text className="substat">
             {teamGamesLeader ? getTeamLineupLabel(teamGamesLeader) : '--'}
           </Text>
-          <Text className="stats-val" fontSize={14}>
+          <Text className="stat">
             {teamGamesLeader ? `${teamGamesLeader.gamesPlayed}` : '--'}
           </Text>
         </Box>
       </SimpleGrid>
 
-      <Stack gap={2}>
-        <Text className="summary-label">Filter Games Played</Text>
-        <HStack gap={2} flexWrap="wrap">
+      <Stack gap={1}>
+        <Text px={2} className="summary-label">
+          Filter Games Played
+        </Text>
+        <HStack flexWrap="wrap">
           {teamFilterOptions.map((option) => (
             <Button
               key={option.key}
-              size="sm"
-              variant={gamesFilter === option.key ? 'solid' : 'surface'}
+              size="xs"
+              variant={gamesFilter === option.key ? 'solid' : 'outline'}
               colorPalette={option.color}
               onClick={() => onGamesFilterChange(option.key)}
+              minW={'80px'}
             >
               {option.label}
             </Button>
@@ -109,15 +112,18 @@ export default function TeamLeaderboardView(props: TeamLeaderboardViewProps) {
         </HStack>
       </Stack>
 
-      <Stack gap={2}>
-        <Text className="summary-label">Sort Teams By</Text>
-        <HStack gap={2} flexWrap="wrap">
+      <Stack gap={1}>
+        <Text px={2} className="summary-label">
+          Sort Teams By
+        </Text>
+        <HStack flexWrap="wrap">
           {teamSortOptions.map((option) => (
             <Button
               key={option.key}
-              size="sm"
-              variant={sortKey === option.key ? 'solid' : 'surface'}
-              colorPalette={'cyan'}
+              size="xs"
+              minW={'80px'}
+              variant={sortKey === option.key ? 'solid' : 'outline'}
+              colorPalette={'gray'}
               onClick={() => onSort(option.key)}
             >
               {option.label}
@@ -128,7 +134,7 @@ export default function TeamLeaderboardView(props: TeamLeaderboardViewProps) {
       </Stack>
 
       <Box borderWidth="1px" borderRadius="lg" overflow="hidden">
-        <Box px={4} py={3} borderBottomWidth="1px">
+        <Box px={4} py={2} borderBottomWidth="1px">
           <Heading size="md">Team Lineup Leaderboard</Heading>
         </Box>
         {rows.length === 0 ? (
@@ -168,7 +174,7 @@ export default function TeamLeaderboardView(props: TeamLeaderboardViewProps) {
             >
               <Table.Header>
                 <Table.Row>
-                  <Table.ColumnHeader textAlign="center" w="40px">
+                  <Table.ColumnHeader textAlign="center" w="35px" px={0}>
                     RK
                   </Table.ColumnHeader>
                   <Table.ColumnHeader data-sticky="start" left="0" minW="180px">

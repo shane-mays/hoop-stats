@@ -113,9 +113,14 @@ Expected arguments:
 
 Used when marking a pending game as complete.
 
-### `get_current_leaderboard`
+### `get_current_leaderboards`
 
 Expected return shape:
+
+- `playerLeaderboard`
+- `teamLeaderboard`
+
+The `playerLeaderboard` object is expected to include:
 
 - `seasonLabel`
 - `lastUpdated`
@@ -146,13 +151,40 @@ Each stat entry is expected to include:
 - `total`
 - `average`
 
-Used by the leaderboard screen.
+The `teamLeaderboard` object is expected to include:
 
-### `refresh_current_leaderboard`
+- `seasonLabel`
+- `lastUpdated`
+- `combinations`
+
+Each team combination entry is expected to include:
+
+- `combinationKey`
+- `players`
+- `gamesPlayed`
+- `wins`
+- `losses`
+- `winPct`
+- `pointsForAvg`
+- `pointsAgainstAvg`
+- `pointDiffAvg`
+- `lastPlayedAt`
+
+Each `players` entry is expected to include:
+
+- `id`
+- `name`
+- `username`
+
+Used by:
+
+- the leaderboard screen
+
+### `refresh_all_current_leaderboards`
 
 Expected behavior:
 
-- refreshes or rebuilds the current season leaderboard data source used by `get_current_leaderboard`
+- refreshes or rebuilds the current season for both player and team leaderboards used by `get_current_leaderboards`
 
 Used by:
 
@@ -251,7 +283,7 @@ Current frontend note:
 
 Current frontend note:
 
-- The leaderboard UI currently surfaces `points`, `assists`, `steals`, `blocks`, and `threes`.
+- The player leaderboard UI currently surfaces `points`, `assists`, `steals`, `blocks`, and `threes`.
 - `rebounds` is still expected in the shared contract for future use, even though it is not currently rendered in the leaderboard UI.
 
 ## Frontend Service Module
